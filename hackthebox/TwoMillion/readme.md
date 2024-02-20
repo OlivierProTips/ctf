@@ -42,7 +42,6 @@ DB_PASSWORD=SuperDuperPass123
 
 ## root
 
-- /var/mail/admin
--> OverlayFS
+/var/mail/admin -> OverlayFS
 
 https://github.com/xkaneiki/CVE-2023-0386/tree/main
